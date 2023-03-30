@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     //원하는 시간마다 updatTime()함수를 이용해서 바꾸겠다.
     let interval = 1.0
     var count = 0
+    var alarmTime: String?
     
     @IBOutlet var lblCurrentTime: UILabel!
     @IBOutlet var lblPickerTime: UILabel!
@@ -31,6 +32,9 @@ class ViewController: UIViewController {
         //DateFormatter()로 형식을 정의
         formatter.dateFormat = "yyyy-MM-dd HH:mm EEE"
         lblPickerTime.text = "선택시간: " + formatter.string(from: datePickerView.date)
+        
+        formatter.dateFormat = "hh:mm aaa"
+        alarmTime = formatter.string(from: datePickerView.date)
     }
     
     @objc func updateTime() {
@@ -43,6 +47,15 @@ class ViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss EEE"
         lblCurrentTime.text = "현재시간: " + formatter.string(from: date as Date)
+        
+        formatter.dateFormat = "hh:mm aaa"
+        let currentTime = formatter.string(for: date)
+        
+        if (alarmTime == currentTime) {
+            view.backgroundColor = UIColor.red
+        } else {
+            view.backgroundColor = UIColor.white
+        }
     }
     
 }
