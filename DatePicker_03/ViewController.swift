@@ -52,9 +52,15 @@ class ViewController: UIViewController {
         let currentTime = formatter.string(for: date)
         
         if (alarmTime == currentTime) {
-            view.backgroundColor = UIColor.red
+            // 알람켜질때
+            let alarmOnAlert = UIAlertController(title: "알림", message: "설정된 시간입니다!!!", preferredStyle: UIAlertController.Style.alert)
+            let alarmAction = UIAlertAction(title: "네, 알겠습니다.", style: UIAlertAction.Style.default, handler: nil)
+            alarmOnAlert.addAction(alarmAction)
+            present(alarmOnAlert, animated: true, completion: nil)
+            alarmTime = ""
         } else {
-            view.backgroundColor = UIColor.white
+            // 알람꺼질떼
+            
         }
     }
     
